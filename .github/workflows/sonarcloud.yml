@@ -87,9 +87,6 @@ jobs:
           # Name of Maven Toolchain Vendor if the default name of "${distribution}" is not wanted. See examples of supported syntax in Advanced Usage file
           mvn-toolchain-vendor: # optional
                     
-            
-
-    steps:
       - name: Analyze with SonarCloud
 
         # You can pin the exact commit or the version.
