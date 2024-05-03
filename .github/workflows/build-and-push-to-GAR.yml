@@ -44,7 +44,7 @@ jobs:
         run: docker ps -a
 
       - name: Push Docker Image to Artifact Registry
-        run: docker push ${{ env.GAR_LOCATION }}/hue-intern
+        run: docker push hue-intern
 
 
 
