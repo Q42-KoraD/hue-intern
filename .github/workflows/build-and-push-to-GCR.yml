@@ -10,6 +10,8 @@ jobs:
     env:
       IMAGE_NAME: hue-intern
       PROJECT_ID: stage-kora-dokbua
+      REGION: europe-west4
+      GAR_LOCATION: europe-west4-docker.pkg.dev
 
     steps:
 
@@ -21,19 +23,18 @@ jobs:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-      - name: Build Docker Client
-        run: docker build -t $IMAGE_NAME:latest .
 
-      - name: Configure Docker Client
+      - name: Docker auth
         run: |-
-          gcloud auth configure-docker --quiet
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
-      - name: Push Docker Image to Container Registry (GCR)
+      - name: Build image and send to GAR
+        run: docker build . --file hue-intern --tag ${{ env.GAR_LOCATION }}
+        working-directory: hue-intern
+
+
+      - name: Push Docker Image to Artifact Registry
         env:
           GIT_TAG: v0.0.1
-        run: |-
-          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        run: docker push ${{ env.GAR_LOCATION }}
           
