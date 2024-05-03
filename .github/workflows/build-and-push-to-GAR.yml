@@ -43,11 +43,11 @@ jobs:
       - name: Docker tag
         run: docker tag hue-intern ${{ env.GAR_LOCATION }}
 
-      - name: Show all containers
-        run: docker ps -a
+      - name: Show all images
+        run: docker images
 
       - name: Push Docker Image to Artifact Registry
-        run: docker push ${{ env.GAR_LOCATION }}
+        run: docker push ${{ env.GAR_LOCATION }}/hue-intern
 
 
 
