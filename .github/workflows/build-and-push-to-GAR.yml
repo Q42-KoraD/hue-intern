@@ -18,6 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - id: auth
+        uses: google-github-actions/auth@v2.1.2
+        with:
+          credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+
       - uses: google-github-actions/setup-gcloud@v2.1.0
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
