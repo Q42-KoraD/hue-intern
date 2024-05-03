@@ -30,7 +30,6 @@ jobs:
 
       - name: Build image and send to GAR
         run: docker build . --tag ${{ env.GAR_LOCATION }}
-        working-directory: hue-intern
 
       - name: Push Docker Image to Artifact Registry
         env:
