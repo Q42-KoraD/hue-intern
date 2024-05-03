@@ -31,7 +31,7 @@ jobs:
 
       - name: Docker auth
         run: |-
-          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev/stage-kora-dokbua/hue-intern --quiet
 
       - name: Build image and send to GAR
         run: docker build . --tag ${{ env.GAR_LOCATION }}
