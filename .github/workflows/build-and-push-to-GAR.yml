@@ -33,10 +33,10 @@ jobs:
         run: |-
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev/stage-kora-dokbua/hue-intern/ --quiet
 
-      - name: Build image and send to GAR
-        run: docker build -f Dockerfile .
+      - name: Build image
+        run: docker build -f Dockerfile -t ${{ env.GAR_LOCATION }} .
 
       - name: Push Docker Image to Artifact Registry
-        run: docker push ${{ env.GAR_LOCATION }}
+        run: docker push ${{ env.GAR_LOCATION }}:latest
 
 
