@@ -11,7 +11,7 @@ jobs:
       IMAGE_NAME: hue-intern
       PROJECT_ID: stage-kora-dokbua
       REGION: europe-west4
-      GAR_LOCATION: europe-west4-docker.pkg.dev/stage-kora-dokbua/hue-intern/
+      GAR_LOCATION: europe-west4-docker.pkg.dev/stage-kora-dokbua/hue-intern
 
     steps:
 
