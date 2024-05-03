@@ -23,6 +23,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
 
+      - name: authenticate to GAR
+        run: gcloud auth configure-docker \europe-west4-docker.pkg.dev
+      
+
       - uses: google-github-actions/setup-gcloud@v2.1.0
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
