@@ -29,12 +29,13 @@ jobs:
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Build image and send to GAR
-        run: docker build . --file hue-intern --tag ${{ env.GAR_LOCATION }}
+        run: docker build . --file Q42-KoraD/hue-intern --tag ${{ env.GAR_LOCATION }}
         working-directory: hue-intern
-
 
       - name: Push Docker Image to Artifact Registry
         env:
           GIT_TAG: v0.0.1
+
         run: docker push ${{ env.GAR_LOCATION }}
-          
+
+
