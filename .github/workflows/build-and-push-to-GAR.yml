@@ -40,6 +40,6 @@ jobs:
         env:
           GIT_TAG: v0.0.1
 
-        run: docker push ${{ env.GAR_LOCATION }}
+        run: docker push ${{ env.GAR_LOCATION }}/stage-kora-dokbua/hue-intern
 
 
