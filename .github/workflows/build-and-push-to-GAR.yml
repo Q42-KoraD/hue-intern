@@ -41,7 +41,7 @@ jobs:
         run: docker build -t hue-intern .
 
       - name: Docker tag
-        run: docker tag hue-intern ${{ env.GAR_LOCATION }}
+        run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern
 
       - name: Show all images
         run: docker images
