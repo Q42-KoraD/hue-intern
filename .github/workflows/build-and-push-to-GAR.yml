@@ -43,7 +43,7 @@ jobs:
         uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb
 
       - name: Docker tag
-        run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern:${{ GITHUB_SHA::8 }}
+        run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern:${{ github.sha }}
      
 
       # - name: Docker meta
@@ -53,7 +53,7 @@ jobs:
       #     images: hue-intern/app
 
       - name: Push Docker Image to Artifact Registry
-        run: docker push ${{ env.GAR_LOCATION }}/hue-intern:${{ GITHUB_SHA::8 }}
+        run: docker push ${{ env.GAR_LOCATION }}/hue-intern:${{ github.sha }}
 
 
 
