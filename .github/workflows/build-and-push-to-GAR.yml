@@ -53,7 +53,7 @@ jobs:
       #     images: hue-intern/app
 
       - name: Push Docker Image to Artifact Registry
-        run: docker push ${{ env.GAR_LOCATION }}/hue-intern
+        run: docker push ${{ env.GAR_LOCATION }}/hue-intern:$(git rev-parse --short HEAD)
 
 
 
