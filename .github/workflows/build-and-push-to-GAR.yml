@@ -44,10 +44,7 @@ jobs:
 
       # - name: Docker tag
       #   run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern
-
-
-      # - name: Push Docker Image to Artifact Registry
-      #   run: docker push ${{ env.GAR_LOCATION }}/hue-intern
+     
 
       - name: Docker meta
         id: meta
@@ -55,14 +52,8 @@ jobs:
         with:
           images: hue-intern/app
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-      
+      - name: Push Docker Image to Artifact Registry
+        run: docker push ${{ env.GAR_LOCATION }}/hue-intern
 
 
 
