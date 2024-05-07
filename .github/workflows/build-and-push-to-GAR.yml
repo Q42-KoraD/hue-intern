@@ -37,17 +37,27 @@ jobs:
         run: |-
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev/stage-kora-dokbua/hue-intern --quiet
 
+      # - name: Build image
+      #   run: docker build -t hue-intern .
       - name: Build image
-        run: docker build -t hue-intern .
+        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb
 
-      - name: Docker tag
-        run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern
+      # - name: Docker tag
+      #   run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern
 
-      - name: Show all images
-        run: docker images
 
-      - name: Push Docker Image to Artifact Registry
-        run: docker push ${{ env.GAR_LOCATION }}/hue-intern
+      # - name: Push Docker Image to Artifact Registry
+      #   run: docker push ${{ env.GAR_LOCATION }}/hue-intern
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+      
+
 
 
 
