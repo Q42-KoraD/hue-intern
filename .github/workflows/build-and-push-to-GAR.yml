@@ -42,15 +42,15 @@ jobs:
       - name: Build image
         uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb
 
-      # - name: Docker tag
-      #   run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern
+      - name: Docker tag
+        run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern:$(git rev-parse --short HEAD)
      
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: hue-intern/app
+      # - name: Docker meta
+      #   id: meta
+      #   uses: docker/metadata-action@v5
+      #   with:
+      #     images: hue-intern/app
 
       - name: Push Docker Image to Artifact Registry
         run: docker push ${{ env.GAR_LOCATION }}/hue-intern
