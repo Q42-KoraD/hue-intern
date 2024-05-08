@@ -25,7 +25,6 @@ jobs:
 
       - name: authenticate to GAR
         run: gcloud auth configure-docker \europe-west4-docker.pkg.dev
-      
 
       - uses: google-github-actions/setup-gcloud@v2.1.0
         with:
@@ -39,22 +38,18 @@ jobs:
 
       - name: Build image
         run: docker build -t hue-intern .
-      # - name: Build image
-      #   uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb
 
       - name: Docker tag
         run: docker tag hue-intern ${{ env.GAR_LOCATION }}/hue-intern:${{ github.sha }}
-     
-
-      # - name: Docker meta
-      #   id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: hue-intern/app
 
       - name: Push Docker Image to Artifact Registry
         run: docker push ${{ env.GAR_LOCATION }}/hue-intern:${{ github.sha }}
 
+      - name: Update the GitOps repository
+        # Copy the deploymentfiles
+        
+        
+        # Push it to the GitOps repo
 
 
 
