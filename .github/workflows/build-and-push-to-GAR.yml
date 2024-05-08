@@ -52,9 +52,12 @@ jobs:
           ls
           cd kubernetes
           echo "$PWD"
-          cp * ~/GitOps
-          cd ~/GitOps
+          cp * /home/runner/work/hue-intern/hue-intern/GitOps
+          cd /home/runner/work/hue-intern/hue-intern/GitOps
           cat deploy.yaml
+          git add .
+          git commit -m "update GitOps repo"
+          git push
         # Copy the deploymentfiles
         
         
