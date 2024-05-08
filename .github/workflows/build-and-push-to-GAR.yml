@@ -63,7 +63,7 @@ jobs:
           cd /home/runner/work/hue-intern/hue-intern/GitOps
           cat deploy.yaml
           git config --global user.email "${{ secrets.USER_EMAIL }}"
-          git config --global user.name "${{ secrets.NAME }}
+          git config --global user.name "${{ secrets.NAME }}"
           git add .
           git commit -m "update GitOps repo"
           git push
