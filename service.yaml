@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hue-intern
+  name: hue-intern
+  namespace: default
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 34.118.233.243
+  clusterIPs:
+  - 34.118.233.243
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31582
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: hue-intern
+  sessionAffinity: None
+  type: LoadBalancer
