@@ -50,12 +50,6 @@ jobs:
       - name: Push Docker Image to Artifact Registry
         run: docker push ${{ env.GAR_LOCATION }}/hue-intern:${{ env.SHA}}
 
-      - name: Edit deploy.yaml
-        run: |
-          cd kubernetes
-          sed -i 's/latest/${{ env.SHA }}/g' deploy.yaml
-          cd ..
-
       - name: Update the GitOps repository
         run: |
           git clone https://${{ secrets.NAME }}:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/Q42-KoraD/GitOps.git
@@ -65,7 +59,8 @@ jobs:
           git config --global user.email "${{ secrets.USER_EMAIL }}"
           git config --global user.name "${{ secrets.NAME }}"
           git remote set-url origin https://${{ secrets.NAME }}:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/Q42-KoraD/GitOps.git
-          git add .
+          sed -i 's/latest/${{ env.SHA }}/g' deploy.yaml
+          git add -A
           git commit -m "update GitOps repo"
           git push --set-upstream origin master
         # Copy the deploymentfiles
