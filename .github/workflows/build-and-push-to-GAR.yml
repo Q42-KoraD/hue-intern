@@ -54,7 +54,7 @@ jobs:
         run: |
           git clone https://${{ secrets.NAME }}:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/Q42-KoraD/GitOps.git
           cd /home/runner/work/hue-intern/hue-intern/GitOps
-          sed -i 's/image:.*/image:europe-west4-docker.pkg.dev\/stage-kora-dokbua\/hue-intern\/hue-intern:${{ env.SHA }}'
+          sed -i='' 's/^image: .*/image: europe\-west4\-docker\.pkg\.dev\/stage-kora-dokbua\/hue-intern\/hue-intern:${{ env.SHA }}' deploy.yaml
           git config --global user.email "${{ secrets.USER_EMAIL }}"
           git config --global user.name "${{ secrets.NAME }}"
           git remote set-url origin https://${{ secrets.NAME }}:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/Q42-KoraD/GitOps.git
