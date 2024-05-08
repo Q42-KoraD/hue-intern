@@ -47,11 +47,12 @@ jobs:
 
       - name: Update the GitOps repository
         run: |
+          echo "$PWD"
           git clone https://github.com/Q42-KoraD/GitOps
           ls
           cd kubernetes
-          cp * ~/GitOps
           echo "$PWD"
+          cp * ~/GitOps
           cd ~/GitOps
           cat deploy.yaml
         # Copy the deploymentfiles
