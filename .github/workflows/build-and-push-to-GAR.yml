@@ -63,7 +63,7 @@ jobs:
           git config --list
           git add .
           git commit -m "update GitOps repo"
-          git push --set-upstream origin
+          git push --set-upstream origin master
         # Copy the deploymentfiles
         
         
