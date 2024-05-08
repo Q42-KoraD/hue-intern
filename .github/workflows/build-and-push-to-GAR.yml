@@ -46,6 +46,14 @@ jobs:
         run: docker push ${{ env.GAR_LOCATION }}/hue-intern:${{ github.sha }}
 
       - name: Update the GitOps repository
+        run: |
+          git clone https://github.com/Q42-KoraD/GitOps
+          ls
+          cd kubernetes
+          cp * ~/GitOps
+          echo "$PWD"
+          cd ~/GitOps
+          cat deploy.yaml
         # Copy the deploymentfiles
         
         
