@@ -48,7 +48,9 @@ jobs:
 
       - name: Edit deploy.yaml
         run: |
+          cd kubernetes
           sed -i 's/latest/${{ env.SHA }}/g' deploy.yaml
+          cd ..
 
       - name: Update the GitOps repository
         run: |
