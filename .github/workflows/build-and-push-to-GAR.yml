@@ -2,11 +2,6 @@ on:
   pull_request:
     types: [closed]
 
-  # workflow_run:
-  #   workflows: ["SonarCloud analysis"]
-  #   types:
-  #     - completed
-
 jobs:
   Build-and-push-to-GCC:
     if: github.event.pull_request.merged == true
