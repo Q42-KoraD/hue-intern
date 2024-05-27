@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Argo CD en Argo Rollouts demo : BLUE 2
+          Argo CD en Argo Rollouts demo : BLUESTEEL
         </p>
         <a
           className="App-link"
